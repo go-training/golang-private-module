@@ -9,6 +9,11 @@ platform:
 steps:
 - name: build
   image: golang:1.13
+  environment:
+    username:
+      from_secret: username
+    token:
+      from_secret: token
   commands:
   - go env -w GOPRIVATE=github.com/appleboy
   - git --help
