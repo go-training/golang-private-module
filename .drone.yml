@@ -10,5 +10,7 @@ steps:
 - name: build
   image: golang:1.13
   commands:
+  - go env -w GOPRIVATE=github.com/appleboy
+  - git --help
   - go build .
 
