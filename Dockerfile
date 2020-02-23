@@ -1,5 +1,5 @@
 # Start from the latest golang base image
-FROM golang:alpine
+FROM golang:alpine as Builder
 
 ARG ACCESS_TOKEN
 ENV ACCESS_TOKEN=$ACCESS_TOKEN
@@ -23,3 +23,9 @@ RUN go build -o main .
 
 # Command to run the executable
 CMD ["./main"]
+
+FROM scratch
+
+COPY --from=Builder /app/main /
+
+CMD ["/main"]
