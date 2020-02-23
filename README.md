@@ -39,7 +39,7 @@ See the following:
 
 ```dockerfile
 # Start from the latest golang base image
-FROM golang:alpine
+FROM golang:alpine as Builder
 
 ARG ACCESS_TOKEN
 ENV ACCESS_TOKEN=$ACCESS_TOKEN
@@ -61,8 +61,11 @@ RUN git config --global url."https://appleboy:${ACCESS_TOKEN}@github.com".instea
 # Build the Go app
 RUN go build -o main .
 
-# Command to run the executable
-CMD ["./main"]
+FROM scratch
+
+COPY --from=Builder /app/main /
+
+CMD ["/main"]
 ```
 
 build image using Drone and get docker access token in [security section of setting](https://hub.docker.com/settings/security).

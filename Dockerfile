@@ -21,9 +21,6 @@ RUN git config --global url."https://appleboy:${ACCESS_TOKEN}@github.com".instea
 # Build the Go app
 RUN go build -o main .
 
-# Command to run the executable
-CMD ["./main"]
-
 FROM scratch
 
 COPY --from=Builder /app/main /
