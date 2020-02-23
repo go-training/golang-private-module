@@ -65,7 +65,7 @@ RUN go build -o main .
 CMD ["./main"]
 ```
 
-build image using Drone and get Docker token in [security section of setting](https://hub.docker.com/settings/security).
+build image using Drone and get docker access token in [security section of setting](https://hub.docker.com/settings/security).
 
 ```yaml
 - name: build-image
