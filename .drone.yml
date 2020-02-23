@@ -10,12 +10,12 @@ steps:
 - name: build
   image: golang:1.13
   environment:
-    username:
+    USERNAME:
       from_secret: username
-    access_token:
+    ACCESS_TOKEN:
       from_secret: access_token
   commands:
   - go env -w GOPRIVATE=github.com/appleboy
-  - git config --global url."https://${username}:${access_token}@github.com".insteadOf / "https://github.com"
+  - git config --global url."https://$USERNAME:$ACCESS_TOKEN@github.com".insteadOf / "https://github.com"
   - go build .
 
