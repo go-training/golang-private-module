@@ -20,3 +20,17 @@ steps:
   - go mod tidy
   - go build -o main .
 
+- name: build-image
+  image: plugins/docker
+  environment:
+    ACCESS_TOKEN:
+      from_secret: access_token
+  settings:
+    username:
+      from_secret: username
+    password:
+      from_secret: password
+    repo: appleboy/golang-module-private
+    build_args_from_env:
+      - ACCESS_TOKEN
+
