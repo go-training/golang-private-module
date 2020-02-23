@@ -12,10 +12,10 @@ steps:
   environment:
     username:
       from_secret: username
-    token:
-      from_secret: token
+    access_token:
+      from_secret: access_token
   commands:
   - go env -w GOPRIVATE=github.com/appleboy
-  - git --help
+  - git config --global url."https://${username}:${access_token}@github.com".insteadOf / "https://github.com"
   - go build .
 
