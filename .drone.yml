@@ -8,7 +8,7 @@ platform:
 
 steps:
 - name: build
-  image: golang:1.13
+  image: golang:1.14
   environment:
     USERNAME:
       from_secret: username
