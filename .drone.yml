@@ -15,7 +15,7 @@ steps:
     ACCESS_TOKEN:
       from_secret: access_token
   commands:
-  # - go env -w GOPRIVATE=github.com/$USERNAME
+  - go env -w GOPRIVATE=github.com/$USERNAME
   - git config --global url."https://$USERNAME:$ACCESS_TOKEN@github.com".insteadOf "https://github.com"
   - go mod tidy
   - go build -o main .
