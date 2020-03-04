@@ -39,10 +39,7 @@ See the following:
 
 ```dockerfile
 # Start from the latest golang base image
-FROM golang:alpine as Builder
-
-ARG ACCESS_TOKEN
-ENV ACCESS_TOKEN=$ACCESS_TOKEN
+FROM golang:1.14 as Builder
 
 RUN GOCACHE=OFF
 
@@ -54,7 +51,8 @@ WORKDIR /app
 # Copy everything from the current directory to the Working Directory inside the container
 COPY . .
 
-RUN apk add git
+ARG ACCESS_TOKEN
+ENV ACCESS_TOKEN=$ACCESS_TOKEN
 
 RUN git config --global url."https://appleboy:${ACCESS_TOKEN}@github.com".insteadOf "https://github.com"
 
